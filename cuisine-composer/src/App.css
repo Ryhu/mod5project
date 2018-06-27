@@ -64,3 +64,45 @@
 textarea{
   width:80%;
 }
+
+.recipeBox{
+  margin-top:20px;
+  background-color: red;
+  text-align:left;
+  width:80%;
+  margin: auto;
+}
+
+.listedIngredient{
+  background-color:red;
+  color:white;
+  width:80%;
+  font-size:20px;
+  margin: auto;
+}
+
+.findReqs{
+  background-color:blue;
+  color:white;
+  width:80%;
+  font-size:20px;
+  margin: auto;
+}
+
+#itemsListBox{
+  background-color:#66ffff;
+  border-radius: 5%;
+}
+
+#reqBox{
+  background-color:#ff9999;
+  border-radius: 5%;
+}
+
+#findBox{
+  height:80vh;
+}
+
+#display{
+
+}

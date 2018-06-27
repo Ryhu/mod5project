@@ -24,7 +24,6 @@ class CuisineComposer extends React.Component {
 
   showMainMenu = () => {
     return (<div>
-      <p>hiii =)</p>
       <button className="mainMenuButton" onClick={ () => this.setScreen('find')}> find</button>
       <button className="mainMenuButton" onClick={ () => this.setScreen('add')}> add</button>
       <button className="mainMenuButton" onClick={ () => this.setScreen('browse')}> browse</button>
@@ -39,7 +38,6 @@ class CuisineComposer extends React.Component {
     switch(this.state.screen){
 
       case "":
-        console.log("i did it")
         return this.showMainMenu()
       case "add":
         return <Add screen="" />
@@ -52,8 +50,8 @@ class CuisineComposer extends React.Component {
 
 
   render() {
-    return (<div>
-      <div>{ this.display() }</div>
+    return (<div >
+      <div id="display">{ this.display() }</div>
 
       <div className="footer">{this.showMainMenu()}</div>
       </div>
