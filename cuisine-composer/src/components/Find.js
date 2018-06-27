@@ -11,9 +11,8 @@ class Find extends React.Component {
       screen: "",
       recipesdb: [],
       ingredientsdb: [],
-      filteredIngredients: [],
       findReqs: [],
-      findInput: ""
+      filter: ""
     }
 
   }
@@ -70,15 +69,9 @@ class Find extends React.Component {
     let tempList = this.state.ingredientsdb
     tempList.splice(pos,1)
 
-    //removes clicked item from filtered list
-    pos = this.state.filteredIngredients.indexOf(i)
-    let tempFilter = this.state.filteredIngredients
-    tempFilter.splice(pos,1)
-
     this.setState({
       findReqs: reqs,
-      ingredientsdb: tempList,
-      filteredIngredients: tempFilter
+      ingredientsdb: tempList
     })
   }
 
@@ -99,16 +92,15 @@ class Find extends React.Component {
   }
 
   renderFilteredIngredients(){
+    let filteredArr = this.filterSearch()
     return(<div>
-
-      { this.state.filteredIngredients.map( (i) => {
+      { filteredArr.map( (i) => {
         return(
           <div className="listedIngredient" onClick={ () => this.addToReqs(i)}>
             <p>{i.name}</p>
           </div>
         )
       })}
-
     </div>)
   }
 
@@ -126,12 +118,20 @@ class Find extends React.Component {
     </div>)
   }
 
-  filterSearch = (e) => {
+  // returns filtered array
+  filterSearch(filter= this.state.filter){
     let arr = this.state.ingredientsdb.filter( (ingredient) => {
-      return (ingredient.name.indexOf(e.target.value) >= 0)
+      return (ingredient.name.indexOf(this.state.filter) >= 0)
     })
+    // if (this.state.filter = ""){
+    //   arr = this.state.ingredientsdb
+    // }
+    return arr
+  }
+
+  filterHandler = (e) => {
     this.setState({
-      filteredIngredients: arr
+      filter: e.target.value
     })
   }
 
@@ -140,7 +140,7 @@ class Find extends React.Component {
     return (
       <div id="findBox">
         <p>Find</p>
-        <input type="text" onChange={ this.filterSearch } />
+        <input type="text" onChange={ this.filterHandler } />
 
         <div id="itemsListBox">
           All Ingredients
