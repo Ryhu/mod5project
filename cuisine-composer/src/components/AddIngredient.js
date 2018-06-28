@@ -20,7 +20,37 @@ class AddIngredient extends React.Component {
     this.setState({
       [key]: e.target.value
     })
-    console.log(e.target.value)
+  }
+
+  submit = (e) => {
+    e.preventDefault()
+    console.log(this.state.name,this.state.picture, this.state.nutrition)
+
+    fetch("http://localhost:3000/api/v1/ingredients", {
+      method: "POST",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        ingredient:{
+          name: `${this.state.name}`,
+          picture: `${this.state.picture}`,
+          nutrition: `${this.state.nutrition}`,
+        }
+      })
+    })
+      .then(res => res.json())
+      .then(res => {
+        console.log(res)
+      })
+
+
+    this.setState({
+      name:"",
+      picture:"",
+      nutrition:"",
+    })
   }
 
   render() {
