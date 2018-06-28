@@ -15,7 +15,6 @@ class CuisineComposer extends React.Component {
   }
 
   setScreen = (word) => {
-    console.log(word)
     this.setState({
       screen: word
     })
@@ -33,8 +32,6 @@ class CuisineComposer extends React.Component {
   }
 
   display(){
-    console.log("footer Render")
-    console.log(this.state.screen)
     switch(this.state.screen){
 
       case "":
@@ -42,7 +39,7 @@ class CuisineComposer extends React.Component {
       case "add":
         return <Add screen="" />
       case "find":
-        return <Find/>
+        return <Find screen="" />
       default:
         console.log("failed the switch")
     }

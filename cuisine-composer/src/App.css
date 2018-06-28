@@ -30,6 +30,7 @@
 
 
 
+html, body { height: 100%; }
 
 .mainMenuButton{
   width:100px;
@@ -105,4 +106,20 @@ textarea{
 
 #display{
 
+}
+
+#findButton{
+  margin-top:30px;
+}
+
+.recipeScreen{
+  width:80%;
+  margin:auto;
+}
+
+.recipeIngredients{
+  width:40%;
+  text-align:left;
+  background-color:yellow;
+  margin:auto;
 }

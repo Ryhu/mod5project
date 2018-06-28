@@ -1,4 +1,6 @@
 import React from 'react';
+import FindResults from './FindResults'
+import RecipeView from './RecipeView'
 
 
 
@@ -12,7 +14,8 @@ class Find extends React.Component {
       recipesdb: [],
       ingredientsdb: [],
       findReqs: [],
-      filter: ""
+      filter: "",
+      currentRecipe: null
     }
 
   }
@@ -40,23 +43,14 @@ class Find extends React.Component {
         }
         this.setState({
           ingredientsdb: result,
-          filteredIngredients: result
         })
       })
   }
 
-  renderRecipes(){
-    return(<div>
-
-      { this.state.recipesdb.map( (i) => {
-        return(<div className="recipeBox">
-          <p>{i.name}</p>
-          <p>{i.time}</p>
-          <p>{i.directions}</p>
-        </div>)
-      })}
-
-    </div>)
+  componentWillReceiveProps(){
+    this.setState({
+      screen: this.props.screen
+    })
   }
 
   addToReqs(i){
@@ -135,26 +129,62 @@ class Find extends React.Component {
     })
   }
 
+  startSearch = () => {
+    this.setState({
+      screen: "results"
+    })
+  }
 
-  render() {
+  reset = () => {
+    let combined = this.state.ingredientsdb.concat(this.state.findReqs)
+    this.setState({
+      filter: "",
+      findReqs: [],
+      ingredientsdb: combined,
+    })
+  }
+
+  showSearchMenu(){
     return (
       <div id="findBox">
         <p>Find</p>
-        <input type="text" onChange={ this.filterHandler } />
-
+        <input type="text" onChange={ this.filterHandler } value={ this.state.filter }/>
         <div id="itemsListBox">
           All Ingredients
           { this.renderFilteredIngredients()}
         </div>
-
         <div id="reqBox">
           Search For:
           { this.renderReqIngredients()}
         </div>
-
-
+        <button id="findButton" onClick={ this.startSearch }>Find</button>
+        <button id="findButton" onClick={ this.reset }>Reset</button>
       </div>
+    )
+  }
 
+  recipeSwitch = (recipe) => {
+    this.setState({
+      screen: "recipe",
+      currentRecipe: recipe
+    })
+  }
+
+  display(){
+    if(this.state.screen == ""){
+      return this.showSearchMenu()
+    }
+    else if (this.state.screen == "results"){
+      return <FindResults recipesdb={this.state.recipesdb} findReqs={this.state.findReqs} action={this.recipeSwitch}/>
+    }
+    else if (this.state.screen == "recipe"){
+      return <RecipeView recipe={this.state.currentRecipe}/>
+    }
+  }
+
+  render() {
+    return (
+       this.display()
     )
   }
 }
