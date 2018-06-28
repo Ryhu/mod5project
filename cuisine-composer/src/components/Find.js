@@ -171,13 +171,13 @@ class Find extends React.Component {
   }
 
   display(){
-    if(this.state.screen == ""){
+    if(this.state.screen === ""){
       return this.showSearchMenu()
     }
-    else if (this.state.screen == "results"){
+    else if (this.state.screen === "results"){
       return <FindResults recipesdb={this.state.recipesdb} findReqs={this.state.findReqs} action={this.recipeSwitch}/>
     }
-    else if (this.state.screen == "recipe"){
+    else if (this.state.screen === "recipe"){
       return <RecipeView recipe={this.state.currentRecipe}/>
     }
   }

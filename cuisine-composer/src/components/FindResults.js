@@ -4,11 +4,6 @@ import React from 'react';
 
 class FindResults extends React.Component {
 
-  constructor(props){
-    super(props)
-
-  }
-
   renderRecipes(){
     let list = this.reqFilter()
     return(<div>
@@ -31,7 +26,7 @@ class FindResults extends React.Component {
         let flag = false
         //each ingredient in recipe compared to filter ingredient
         for (let recIng of recipe.ingredients){
-          if (recIng.name == ingredient.name){
+          if (recIng.name === ingredient.name){
             flag = true
           }
         }

@@ -4,11 +4,6 @@ import React from 'react';
 
 class RecipeView extends React.Component {
 
-  constructor(props){
-    super(props)
-  }
-
-
   ingredientsSpreader(ingredients){
     return(<ul className="recipeIngredients">
 

@@ -23,9 +23,6 @@ class Add extends React.Component {
   }
 
   display = () => {
-    console.log("add Render")
-    console.log(this.state.screen)
-    console.log(this.props)
     switch(this.state.screen){
       case "":
         return this.showMainMenu()
@@ -34,14 +31,12 @@ class Add extends React.Component {
       case "recipe":
         return <AddRecipe />
 
-
       default:
         console.log("failed the switch")
     }
   }
 
   setScreen = (word) => {
-    console.log(word)
     this.setState({
       screen: word
     })
