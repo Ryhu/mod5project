@@ -54,6 +54,8 @@ class AddRecipe extends React.Component {
       picture:"",
       nutrition:"",
     })
+
+    this.props.messageAction("added recipe!")
   }
 
 

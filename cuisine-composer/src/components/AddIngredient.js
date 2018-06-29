@@ -51,6 +51,8 @@ class AddIngredient extends React.Component {
       picture:"",
       nutrition:"",
     })
+
+    this.props.messageAction("added ingredient!")
   }
 
   render() {

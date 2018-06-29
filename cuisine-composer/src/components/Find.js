@@ -87,7 +87,7 @@ class Find extends React.Component {
 
   renderFilteredIngredients(){
     let filteredArr = this.filterSearch()
-    return(<div>
+    return(<div className="listedIngredientBox">
       { filteredArr.map( (i) => {
         return(
           <div className="listedIngredient" onClick={ () => this.addToReqs(i)}>
@@ -99,7 +99,7 @@ class Find extends React.Component {
   }
 
   renderReqIngredients(){
-    return(<div>
+    return(<div className="findReqsBox">
 
       { this.state.findReqs.map( (i) => {
         return(

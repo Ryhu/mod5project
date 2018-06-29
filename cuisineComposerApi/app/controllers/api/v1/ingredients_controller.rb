@@ -1,11 +1,20 @@
 class Api::V1::IngredientsController < ApplicationController
   def create
-    @ingredient = Ingredient.new(ingredient_params)
+
+    @ingredient = Ingredient.find_by(name: ingredient_params[:name])
+
+    if !(@ingredient)
+      @ingredient = Ingredient.new(ingredient_params)
       if @ingredient.save
         render json: @ingredient
       else
         render json: {error: "something went wrong!"}
       end
+    else
+      @ingredient.update(ingredient_params)
+      render json: @ingredient
+    end
+
   end
 
   def index
