@@ -145,3 +145,14 @@ textarea{
   margin:auto;
   width:60%;
 }
+
+.cartEditIngredient{
+  background-color: #66ffff;
+  margin:auto;
+  margin-top:10px;
+  width:60%;
+}
+
+.cartEditIngredientCounter{
+  display:inline;
+}

@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2018_06_26_183358) do
   create_table "fridge_ingredients", force: :cascade do |t|
     t.integer "ingredient_id"
     t.integer "fridge_id"
+    t.integer "amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -39,6 +40,7 @@ ActiveRecord::Schema.define(version: 2018_06_26_183358) do
   create_table "recipe_ingredients", force: :cascade do |t|
     t.integer "ingredient_id"
     t.integer "recipe_id"
+    t.integer "amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -54,6 +56,7 @@ ActiveRecord::Schema.define(version: 2018_06_26_183358) do
   create_table "shopping_cart_ingredients", force: :cascade do |t|
     t.integer "ingredient_id"
     t.integer "shopping_cart_id"
+    t.integer "amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
