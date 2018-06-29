@@ -1,6 +1,7 @@
 import React from 'react';
 import RecipeView from './RecipeView'
-
+import BrowseRecipes from './BrowseRecipes'
+import BrowseIngredients from './BrowseIngredients'
 
 
 class Browse extends React.Component {
@@ -9,28 +10,9 @@ class Browse extends React.Component {
     super(props)
 
     this.state = {
-      screen: "",
-      recipesdb: [],
-      currentRecipe: null
+      screen: ""
     }
 
-  }
-
-  //sets up the temp recipes db
-  componentDidMount(){
-    fetch("http://localhost:3000/api/v1/recipes")
-      .then(res => res.json())
-      .then(res => {
-
-        let result = []
-        for (let i of res){
-          result.push(i)
-        }
-
-        this.setState({
-          recipesdb: result
-        })
-      })
   }
 
   //returns to home screen when footer clicked again
@@ -40,24 +22,34 @@ class Browse extends React.Component {
     })
   }
 
-  showBrowseMenu(){
-    return(
-      this.state.recipesdb.map( (recipe) => {
-        return(<div className="browseRecipe">
-          <p>{recipe.name}</p>
-        </div>)
-      })
-    )
+  setScreen = (word) => {
+    this.setState({
+      screen: word
+    })
+  }
+  display(){
+    switch(this.state.screen){
+      case "":
+        return this.showMainMenu()
+      case "recipe":
+        return <BrowseRecipes messageAction={ this.changeMessage } />
+      case "ingredient":
+        return <BrowseIngredients messageAction={ this.changeMessage } />
+
+      default:
+        console.log("failed the switch")
+    }
   }
 
 
-  display(){
-    if(this.state.screen === ""){
-      return this.showBrowseMenu()
-    }
-    else if (this.state.screen === "recipe"){
-      return <RecipeView recipe={this.state.currentRecipe}/>
-    }
+  showMainMenu(){
+    return (
+      <div>
+        <p>Browse</p>
+        <button className="addButtons" onClick={ () => this.setScreen('ingredient') }>browse ingredients</button>
+        <button className="addButtons" onClick={ () => this.setScreen('recipe') }>browse recipes</button>
+      </div>
+    )
   }
 
   render() {

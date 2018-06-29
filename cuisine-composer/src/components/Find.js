@@ -113,13 +113,11 @@ class Find extends React.Component {
   }
 
   // returns filtered array
-  filterSearch(filter= this.state.filter){
+  filterSearch(){
     let arr = this.state.ingredientsdb.filter( (ingredient) => {
       return (ingredient.name.indexOf(this.state.filter) >= 0)
     })
-    // if (this.state.filter = ""){
-    //   arr = this.state.ingredientsdb
-    // }
+
     return arr
   }
 

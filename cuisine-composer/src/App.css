@@ -131,3 +131,10 @@ textarea{
   background-color:yellow;
   margin:auto;
 }
+
+.browseRecipe{
+  background-color: #66ffff;
+  margin-top:10px;
+  margin:auto;
+  width:80%;
+}
