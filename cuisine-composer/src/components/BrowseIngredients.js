@@ -1,5 +1,5 @@
 import React from 'react';
-
+import IngredientView from './IngredientView'
 
 
 class BrowseIngredients extends React.Component {
@@ -9,15 +9,16 @@ class BrowseIngredients extends React.Component {
 
     this.state = {
       screen: "",
-      recipesdb: [],
+      ingredientsdb: [],
       filter: "",
+      currentIngredient: null,
     }
 
   }
 
   //sets up the temp recipes db
   componentDidMount(){
-    fetch("http://localhost:3000/api/v1/recipes")
+    fetch("http://localhost:3000/api/v1/ingredients")
       .then(res => res.json())
       .then(res => {
 
@@ -27,18 +28,18 @@ class BrowseIngredients extends React.Component {
         }
 
         this.setState({
-          recipesdb: result
+          ingredientsdb: result
         })
       })
   }
 
-  showBrowseMenu(){
+  showBrowseIngredientsMenu(){
     let filteredArr = this.filterSearch()
-    return( <div id="browseScreen">
+    return( <div id="browseIngredients">
     Search: <input type="text" onChange={ this.filterHandler } value={ this.state.filter }/>
-      {filteredArr.map( (recipe) => {
-        return(<div className="browseRecipe" onClick={ () => this.recipeSwitch(recipe) }>
-          <p>{recipe.name}</p>
+      {filteredArr.map( (ingredient) => {
+        return(<div className="browseIngredient" onClick={ () => this.ingredientSwitch(ingredient) }>
+          <p>{ingredient.name}</p>
         </div>)
       })}
     </div>)
@@ -47,7 +48,7 @@ class BrowseIngredients extends React.Component {
 
   // returns filtered array
   filterSearch(){
-    let arr = this.state.recipesdb.filter( (recipe) => {
+    let arr = this.state.ingredientsdb.filter( (recipe) => {
       return (recipe.name.indexOf(this.state.filter) >= 0)
     })
     return arr
@@ -61,18 +62,18 @@ class BrowseIngredients extends React.Component {
 
   display(){
     if(this.state.screen === ""){
-      return this.showBrowseMenu()
+      return this.showBrowseIngredientsMenu()
     }
-    else{
-      return null
+    else if (this.state.screen === "ingredient"){
+      return <IngredientView ingredient={this.state.currentIngredient}/>
     }
   }
 
 
-  recipeSwitch = (recipe) => {
+  ingredientSwitch = (ingredient) => {
     this.setState({
-      screen: "recipe",
-      currentRecipe: recipe
+      screen: "ingredient",
+      currentIngredient: ingredient
     })
   }
 

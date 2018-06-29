@@ -1,4 +1,5 @@
 import React from 'react';
+import RecipeView from './RecipeView'
 
 
 
@@ -11,6 +12,7 @@ class BrowseRecipes extends React.Component {
       screen: "",
       recipesdb: [],
       filter: "",
+      currentRecipe: null,
     }
 
   }
@@ -32,9 +34,9 @@ class BrowseRecipes extends React.Component {
       })
   }
 
-  showBrowseMenu(){
+  showBrowseRecipesMenu(){
     let filteredArr = this.filterSearch()
-    return( <div id="browseScreen">
+    return( <div id="browseRecipes">
     Search: <input type="text" onChange={ this.filterHandler } value={ this.state.filter }/>
       {filteredArr.map( (recipe) => {
         return(<div className="browseRecipe" onClick={ () => this.recipeSwitch(recipe) }>
@@ -61,10 +63,10 @@ class BrowseRecipes extends React.Component {
 
   display(){
     if(this.state.screen === ""){
-      return this.showBrowseMenu()
+      return this.showBrowseRecipesMenu()
     }
-    else{
-      return null
+    else if (this.state.screen === "recipe"){
+      return <RecipeView recipe={this.state.currentRecipe}/>
     }
   }
 
