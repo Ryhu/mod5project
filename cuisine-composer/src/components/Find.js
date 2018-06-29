@@ -25,7 +25,7 @@ class Find extends React.Component {
       .then(res => res.json())
       .then(res => {
         let result = []
-        console.log(res)
+        //console.log(res)
         for (let i of res){
           result.push(i)
         }

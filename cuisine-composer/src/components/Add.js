@@ -10,7 +10,7 @@ class Add extends React.Component {
     super(props)
 
     this.state = {
-      screen: this.props.screen,
+      screen: "",
       message: ""
     }
 

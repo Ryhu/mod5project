@@ -2,6 +2,8 @@ import React from 'react';
 import Add from '../components/Add'
 import Find from '../components/Find'
 import Browse from '../components/Browse'
+import Cart from '../components/Cart'
+import Prep from '../components/Prep'
 
 
 class CuisineComposer extends React.Component {
@@ -43,6 +45,10 @@ class CuisineComposer extends React.Component {
         return <Find screen="" />
       case "browse":
         return <Browse screen="" />
+      case "cart":
+        return <Cart screen="" />
+      case "prep":
+        return <Prep screen="" />
       default:
         console.log("failed the switch")
     }

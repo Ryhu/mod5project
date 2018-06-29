@@ -7,7 +7,6 @@ class IngredientView extends React.Component {
 
 
   render(){
-    console.log("ouahetjgpoifudt904rbglisoe;hrbgeiluhouidro")
     return(
       <div className="recipeScreen">
         <p>ingredient viewer!</p>
