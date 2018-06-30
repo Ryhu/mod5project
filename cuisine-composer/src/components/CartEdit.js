@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Button, View, Text, Image } from "react-native";
 
 
 class CartEdit extends React.Component {
@@ -17,8 +17,8 @@ class CartEdit extends React.Component {
     fetch("http://localhost:3000/api/v1/shopping_carts")
       .then(res => res.json())
       .then(res => {
-
-
+        console.log(res[0])
+        debugger
         let result = []
         for (let i of res[0].ingredients){
           result.push(i)
@@ -31,16 +31,16 @@ class CartEdit extends React.Component {
   }
 
   renderIngredients(){
-    return(<div id="cartEditIngredients">
+    return(<View id="cartEditIngredients">
       {this.state.ingredientsdb.map( (ingredient) => {
-        return(<div className="cartEditIngredient">
+        return(<View className="cartEditIngredient">
           {ingredient.name}
-          <button>-</button>
-          <p className="cartEditIngredientCounter">1</p>
-          <button>+</button>
-        </div>)
+          <Button>-</Button>
+          <Text className="cartEditIngredientCounter">1</Text>
+          <Button>+</Button>
+        </View>)
       })}
-    </div>)
+    </View>)
   }
 
   render() {

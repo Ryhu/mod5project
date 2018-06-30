@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Button, View, Text, Image } from "react-native";
 
 
 class RecipeView extends React.Component {
@@ -18,13 +18,13 @@ class RecipeView extends React.Component {
 
   render(){
     return(
-      <div className="recipeScreen">
-        <p>Im recipe viewer!</p>
-        <p>{ this.props.recipe.name}</p>
-        <p>{ this.props.recipe.time}</p>
+      <View className="recipeScreen">
+        <Text>Im recipe viewer!</Text>
+        <Text>{ this.props.recipe.name}</Text>
+        <Text>{ this.props.recipe.time}</Text>
         {this.ingredientsSpreader(this.props.recipe.ingredients)}
-        <p>{ this.props.recipe.directions}</p>
-      </div>
+        <Text>{ this.props.recipe.directions}</Text>
+      </View>
     )
   }
 

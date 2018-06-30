@@ -1,7 +1,7 @@
 import React from 'react';
 import FindResults from './FindResults'
 import RecipeView from './RecipeView'
-
+import { Button, View, Text, Image, TextInput, TouchableHighlight } from "react-native";
 
 
 class Find extends React.Component {
@@ -57,7 +57,7 @@ class Find extends React.Component {
     //adds clicked item to search requirements
     let reqs = this.state.findReqs
     reqs.push(i)
-
+    console.log("hi!")
     //removes clicked item from items list
     let pos = this.state.ingredientsdb.indexOf(i)
     let tempList = this.state.ingredientsdb
@@ -87,29 +87,29 @@ class Find extends React.Component {
 
   renderFilteredIngredients(){
     let filteredArr = this.filterSearch()
-    return(<div className="listedIngredientBox">
+    return(<View className="listedIngredientBox">
       { filteredArr.map( (i) => {
         return(
-          <div className="listedIngredient" onClick={ () => this.addToReqs(i)}>
-            <p>{i.name}</p>
-          </div>
+          <TouchableHighlight className="listedIngredient" onPress={ () => this.addToReqs(i)}>
+            <Text>{i.name}</Text>
+          </TouchableHighlight>
         )
       })}
-    </div>)
+    </View>)
   }
 
   renderReqIngredients(){
-    return(<div className="findReqsBox">
+    return(<View className="findReqsBox">
 
       { this.state.findReqs.map( (i) => {
         return(
-          <div className="findReqs"  onClick={ () => this.removeFromReqs(i)}>
-            <p>{i.name}</p>
-          </div>
+          <TouchableHighlight className="findReqs"  onPress={ () => this.removeFromReqs(i)}>
+            <Text>{i.name}</Text>
+          </TouchableHighlight>
         )
       })}
 
-    </div>)
+    </View>)
   }
 
   // returns filtered array
@@ -144,20 +144,20 @@ class Find extends React.Component {
 
   showSearchMenu(){
     return (
-      <div id="findBox">
-        <p>Find</p>
-        <input type="text" onChange={ this.filterHandler } value={ this.state.filter }/>
-        <div id="itemsListBox">
-          All Ingredients
+      <View id="findBox">
+        <Text>Find</Text>
+        <TextInput onChange={ this.filterHandler } value={ this.state.filter }/>
+        <View id="itemsListBox">
+          <Text>All Ingredients</Text>
           { this.renderFilteredIngredients()}
-        </div>
-        <div id="reqBox">
-          Search For:
+        </View>
+        <View id="reqBox">
+          <Text>Search For: </Text>
           { this.renderReqIngredients()}
-        </div>
-        <button id="findButton" onClick={ this.startSearch }>Find</button>
-        <button id="findButton" onClick={ this.reset }>Reset</button>
-      </div>
+        </View>
+        <Button id="findButton" onPress={ this.startSearch } title="Find"></Button>
+        <Button id="findButton" onPress={ this.reset } title="Reset"></Button>
+      </View>
     )
   }
 

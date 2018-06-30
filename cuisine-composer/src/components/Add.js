@@ -1,7 +1,7 @@
 import React from 'react';
 import AddIngredient from '../components/AddIngredient'
 import AddRecipe from '../components/AddRecipe'
-
+import { Button, View, Text, Image } from "react-native";
 
 
 class Add extends React.Component {
@@ -45,19 +45,19 @@ class Add extends React.Component {
 
   showMainMenu(){
     return (
-      <div>
-        <p>Add</p>
-        <button className="addButtons" onClick={ () => this.setScreen('ingredient') }>add Ingredient</button>
-        <button className="addButtons" onClick={ () => this.setScreen('recipe') }>add Recipe</button>
+      <View>
+        <Text>Add</Text>
+        <Button className="addButtons" onPress={ () => this.setScreen('ingredient') } title="add Ingredient"></Button>
+        <Button className="addButtons" onPress={ () => this.setScreen('recipe') } title="add Recipe"></Button>
         {this.messageDisplay()}
-      </div>
+      </View>
     )
   }
 
 
   messageDisplay(){
     return(
-      <div>{this.state.message === "" ? null : <p>{this.state.message}</p>}</div>
+      <View>{this.state.message === "" ? null : <Text>{this.state.message}</Text>}</View>
     )
   }
 

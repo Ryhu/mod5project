@@ -1,6 +1,6 @@
 import React from 'react';
 import IngredientView from './IngredientView'
-
+import { Button, View, Text, Image, TextInput, TouchableHighlight } from "react-native";
 
 class BrowseIngredients extends React.Component {
 
@@ -35,14 +35,15 @@ class BrowseIngredients extends React.Component {
 
   showBrowseIngredientsMenu(){
     let filteredArr = this.filterSearch()
-    return( <div id="browseIngredients">
-    Search: <input type="text" onChange={ this.filterHandler } value={ this.state.filter }/>
+    return( <View id="browseIngredients">
+      <Text>Search: </Text>
+      <TextInput onChange={ this.filterHandler } title="Search" value={ this.state.filter }/>
       {filteredArr.map( (ingredient) => {
-        return(<div className="browseIngredient" onClick={ () => this.ingredientSwitch(ingredient) }>
-          <p>{ingredient.name}</p>
-        </div>)
+        return(<TouchableHighlight className="browseIngredient" onPress={ () => this.ingredientSwitch(ingredient) }>
+          <Text>{ingredient.name}</Text>
+        </TouchableHighlight>)
       })}
-    </div>)
+    </View>)
   }
 
 

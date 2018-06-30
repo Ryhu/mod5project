@@ -1,6 +1,8 @@
 import React from 'react';
 import CartActivate from "./CartActivate"
 import CartEdit from "./CartEdit"
+import { Button, View, Text, Image } from "react-native";
+
 
 class Cart extends React.Component {
 
@@ -42,11 +44,11 @@ class Cart extends React.Component {
 
   showMainMenu(){
     return (
-      <div>
-        <p>Cart</p>
-        <button className="addButtons" onClick={ () => this.setScreen('edit') }>edit Cart</button>
-        <button className="addButtons" onClick={ () => this.setScreen('activate') }>Activate Cart</button>
-      </div>
+      <View>
+        <Text>Cart</Text>
+        <Button className="addButtons" onPress={ () => this.setScreen('edit') } title="edit Cart"></Button>
+        <Button className="addButtons" onPress={ () => this.setScreen('activate') } title="Activate Cart"></Button>
+      </View>
     )
   }
 

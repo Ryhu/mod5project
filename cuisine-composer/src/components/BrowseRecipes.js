@@ -1,6 +1,6 @@
 import React from 'react';
 import RecipeView from './RecipeView'
-
+import { Button, View, Text, Image, TextInput, TouchableHighlight } from "react-native";
 
 
 class BrowseRecipes extends React.Component {
@@ -36,14 +36,15 @@ class BrowseRecipes extends React.Component {
 
   showBrowseRecipesMenu(){
     let filteredArr = this.filterSearch()
-    return( <div id="browseRecipes">
-    Search: <input type="text" onChange={ this.filterHandler } value={ this.state.filter }/>
+    return( <View id="browseRecipes">
+    <Text>Search: </Text>
+    <TextInput  onChange={ this.filterHandler } value={ this.state.filter }/>
       {filteredArr.map( (recipe) => {
-        return(<div className="browseRecipe" onClick={ () => this.recipeSwitch(recipe) }>
-          <p>{recipe.name}</p>
-        </div>)
+        return(<TouchableHighlight className="browseRecipe" onPress={ () => this.recipeSwitch(recipe) }>
+          <Text>{recipe.name}</Text>
+        </TouchableHighlight>)
       })}
-    </div>)
+    </View>)
   }
 
 

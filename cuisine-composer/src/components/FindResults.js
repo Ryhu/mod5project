@@ -1,20 +1,22 @@
 import React from 'react';
-
+import { Button, View, Text, Image, TouchableHighlight } from "react-native";
 
 
 class FindResults extends React.Component {
 
   renderRecipes(){
     let list = this.reqFilter()
-    return(<div>
+    return(<View>
       { list.map( (i) => {
-        return(<div className="recipeBox" onClick={ () => this.props.action(i) }>
-          <p>{i.name}</p>
-          <p>{i.time}</p>
-          <p>{i.directions}</p>
-        </div>)
+        return(<TouchableHighlight className="recipeBox" onPress={ () => this.props.action(i) }>
+        <View>
+          <Text>{i.name}</Text>
+          <Text>{i.time}</Text>
+          <Text>{i.directions}</Text>
+        </View>
+        </TouchableHighlight>)
       })}
-    </div>)
+    </View>)
   }
 
   reqFilter(){
@@ -40,10 +42,10 @@ class FindResults extends React.Component {
   render(){
     console.log(this.props.findReqs)
     return(
-      <div>
+      <View>
         { this.renderRecipes() }
-        <p>hi</p>
-      </div>
+        <Text>hi</Text>
+      </View>
     )
   }
 

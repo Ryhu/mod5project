@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Button, View, Text, Image, TextInput } from "react-native";
 
 
 class AddRecipe extends React.Component {
@@ -17,7 +17,7 @@ class AddRecipe extends React.Component {
 
   }
 
-  inputFieldHandler = (e) => {
+  TextInputFieldHandler = (e) => {
     let key = e.target.dataset.name
     this.setState({
       [key]: e.target.value
@@ -63,12 +63,12 @@ class AddRecipe extends React.Component {
   render() {
     return (
       <form className="addForm">
-        <p>recipe</p>
-        name: <input type="text" value={ this.state.name } data-name="name" onChange={ this.inputFieldHandler }/><br />
-        time: <input type="text" value={ this.state.time } data-name="time" onChange={ this.inputFieldHandler }/><br />
-        ingredients: <br /><textarea rows='6' value={ this.state.ingredients } data-name="ingredients" onChange={ this.inputFieldHandler }></textarea><br />
-      directions: <br /><textarea rows='6' value={ this.state.directions } data-name="directions" onChange={ this.inputFieldHandler }></textarea><br />
-      <input type="submit" value="Add Recipe" onClick={ this.submit }/>
+        <Text>recipe{"\n"}</Text>
+        name: <TextInput  value={ this.state.name } data-name="name" onChange={ this.TextInputFieldHandler }/><br />
+        time: <TextInput  value={ this.state.time } data-name="time" onChange={ this.TextInputFieldHandler }/><br />
+        ingredients: <br /><textarea rows='6' value={ this.state.ingredients } data-name="ingredients" onChange={ this.TextInputFieldHandler }></textarea><br />
+        directions: <br /><textarea rows='6' value={ this.state.directions } data-name="directions" onChange={ this.TextInputFieldHandler }></textarea><br />
+        <Button title="Add Recipe" onPress={ this.submit }/>
       </form>
     )
   }

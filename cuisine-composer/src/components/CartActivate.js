@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Button, View, Text, Image, TextInput } from "react-native";
 
 
 class CartActivate extends React.Component {
@@ -14,7 +14,7 @@ class CartActivate extends React.Component {
 
   }
 
-  inputFieldHandler = (e) => {
+  TextInputFieldHandler = (e) => {
     let key = e.target.dataset.name
     this.setState({
       [key]: e.target.value
@@ -57,11 +57,11 @@ class CartActivate extends React.Component {
   render() {
     return (
       <form className="addForm">
-        <p>ingredients</p>
-        name: <input type="text" value={ this.state.name } data-name="name" onChange={ this.inputFieldHandler }/><br />
-        picture: <input type="text" value={ this.state.picture } data-name="picture" onChange={ this.inputFieldHandler } /><br />
-        nutrition: <br /><textarea rows='6' value={ this.state.nutrition } data-name="nutrition" onChange={ this.inputFieldHandler } ></textarea><br />
-      <input type="submit" value="Add Ingredient" onClick={ this.submit }/>
+        <Text>ingredients</Text>
+        name: <TextInput  value={ this.state.name } data-name="name" onChange={ this.TextInputFieldHandler }/><br />
+        picture: <TextInput  value={ this.state.picture } data-name="picture" onChange={ this.TextInputFieldHandler } /><br />
+        nutrition: <br /><textarea rows='6' value={ this.state.nutrition } data-name="nutrition" onChange={ this.TextInputFieldHandler } ></textarea><br />
+      <TextInput type="submit" value="Add Ingredient" onPress={ this.submit }/>
       </form>
     )
   }

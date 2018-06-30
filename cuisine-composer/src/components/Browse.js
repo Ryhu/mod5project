@@ -2,7 +2,7 @@ import React from 'react';
 import RecipeView from './RecipeView'
 import BrowseRecipes from './BrowseRecipes'
 import BrowseIngredients from './BrowseIngredients'
-
+import { Button, View, Text, Image } from "react-native";
 
 class Browse extends React.Component {
 
@@ -41,14 +41,13 @@ class Browse extends React.Component {
     }
   }
 
-
   showMainMenu(){
     return (
-      <div>
-        <p>Browse</p>
-        <button className="addButtons" onClick={ () => this.setScreen('ingredient') }>browse ingredients</button>
-        <button className="addButtons" onClick={ () => this.setScreen('recipe') }>browse recipes</button>
-      </div>
+      <View>
+        <Text>Browse</Text>
+        <Button className="addButtons" onPress={ () => this.setScreen('ingredient') } title="browse ingredients"></Button>
+        <Button className="addButtons" onPress={ () => this.setScreen('recipe') } title="browse recipes"></Button>
+      </View>
     )
   }
 
