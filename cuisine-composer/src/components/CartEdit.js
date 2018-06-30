@@ -17,11 +17,10 @@ class CartEdit extends React.Component {
     fetch("http://localhost:3000/api/v1/shopping_carts")
       .then(res => res.json())
       .then(res => {
-        console.log(res[0])
-        debugger
         let result = []
-        for (let i of res[0].ingredients){
-          result.push(i)
+        for (let i of res[0].shopping_cart_ingredients){
+          let ingredient = Object.assign({amount: i.amount}, i.ingredient)
+          result.push(ingredient)
         }
 
         this.setState({
@@ -34,14 +33,15 @@ class CartEdit extends React.Component {
     return(<View id="cartEditIngredients">
       {this.state.ingredientsdb.map( (ingredient) => {
         return(<View className="cartEditIngredient">
-          {ingredient.name}
-          <Button>-</Button>
+          <Text>{ingredient.name}</Text>
+
           <Text className="cartEditIngredientCounter">1</Text>
-          <Button>+</Button>
+
         </View>)
       })}
     </View>)
   }
+  //          <Button>-</Button>
 
   render() {
     return this.renderIngredients()
