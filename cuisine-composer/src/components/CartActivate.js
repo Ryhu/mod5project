@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, View, Text, Image, TextInput } from "react-native";
+import { Button, View, Text, Image, TextInput, TouchableHighlight } from "react-native";
 
 
 class CartActivate extends React.Component {
@@ -14,55 +14,71 @@ class CartActivate extends React.Component {
 
   }
 
-  TextInputFieldHandler = (e) => {
-    let key = e.target.dataset.name
-    this.setState({
-      [key]: e.target.value
-    })
-  }
-
-  submit = (e) => {
-    e.preventDefault()
-    console.log(this.state.name,this.state.picture, this.state.nutrition)
-
-    fetch("http://localhost:3000/api/v1/ingredients", {
-      method: "POST",
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        ingredient:{
-          name: `${this.state.name}`,
-          picture: `${this.state.picture}`,
-          nutrition: `${this.state.nutrition}`,
-        }
-      })
-    })
+  componentDidMount(){
+    fetch("http://localhost:3000/api/v1/shopping_carts")
       .then(res => res.json())
       .then(res => {
-        console.log(res)
-      })
+        let result = []
+        for (let i of res[0].shopping_cart_ingredients){
+          let ingredient = Object.assign({amount: i.amount, inCart: false}, i.ingredient)
+          result.push(ingredient)
+        }
 
+        this.setState({
+          ingredientsdb: result
+        })
+      })
+  }
+
+  touchIngredient(ingredient){
+    let tempdb = this.state.ingredientsdb
+    let pos = tempdb.indexOf(ingredient)
+    let boo = !tempdb[pos].inCart
+    tempdb[pos].inCart = boo
 
     this.setState({
-      name:"",
-      picture:"",
-      nutrition:"",
+      ingredientsdb: tempdb
     })
-
-    this.props.messageAction("added ingredient!")
   }
+
+  showCart(){
+    return(
+
+      <View id="cartIngredients">
+
+        <View id="cartIngredientsUntapped">
+        {this.state.ingredientsdb.map( (ingredient) => {
+          if(!ingredient.inCart){
+            return(
+              <TouchableHighlight onPress={() => this.touchIngredient(ingredient)}>
+                <Text style={{color:'white', backgroundColor: "blue"}}>{ingredient.name}, {ingredient.amount}</Text>
+              </TouchableHighlight>
+            )
+          }
+        })}
+        </View>
+
+        <View id="cartIngredientsTapped">
+        {this.state.ingredientsdb.map( (ingredient) => {
+          if(ingredient.inCart){
+            return(
+
+              <TouchableHighlight onPress={() => this.touchIngredient(ingredient)}>
+                <Text style={{color:'white', backgroundColor: "red"}}>{ingredient.name}, {ingredient.amount}</Text>
+              </TouchableHighlight>
+
+            )
+          }
+        })}
+        </View>
+
+      </View>)
+  }
+
 
   render() {
     return (
-      <form className="addForm">
-        <Text>ingredients</Text>
-        name: <TextInput  value={ this.state.name } data-name="name" onChange={ this.TextInputFieldHandler }/><br />
-        picture: <TextInput  value={ this.state.picture } data-name="picture" onChange={ this.TextInputFieldHandler } /><br />
-        nutrition: <br /><textarea rows='6' value={ this.state.nutrition } data-name="nutrition" onChange={ this.TextInputFieldHandler } ></textarea><br />
-      <TextInput type="submit" value="Add Ingredient" onPress={ this.submit }/>
-      </form>
+       this.showCart()
     )
   }
 }

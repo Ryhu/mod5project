@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
       resources :recipe_ingredients, only: [:index, :create]
       resources :fridge_ingredients, only: [:index, :create]
-      resources :shopping_cart_ingredients, only: [:index, :create]
+      resources :shopping_cart_ingredients, only: [:index, :create, :update, :destroy]
 
     end
   end
