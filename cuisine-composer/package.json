@@ -5,6 +5,7 @@
   "dependencies": {
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
+    "react-native-cheerio": "^1.0.0-rc.4",
     "react-native-web": "^0.8.6",
     "react-scripts": "1.1.4"
   },

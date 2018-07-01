@@ -3,7 +3,6 @@ import AddIngredient from '../components/AddIngredient'
 import AddRecipe from '../components/AddRecipe'
 import { Button, View, Text, Image } from "react-native";
 
-
 class Add extends React.Component {
 
   constructor(props){
