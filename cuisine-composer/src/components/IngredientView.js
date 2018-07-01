@@ -4,7 +4,29 @@ import { Button, View, Text, Image } from "react-native";
 
 class IngredientView extends React.Component {
 
+  addToCart = () => {
+    console.log(this.props.ingredient)
+    fetch(`http://localhost:3000/api/v1/shopping_cart_ingredients`, {
+      method: "POST",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        item:{
+          ingredient_id: `${this.props.ingredient.id}`,
+          shopping_cart_id: 1,
+          amount: 1,
+        }
+      })
+    })
+      .then(res => res.json())
+      .then(res => {
+        console.log(res)
+      })
 
+          // NEEDS TO CHANGE TO PROPER DYNAMIC AMOUNT
+  }
 
   render(){
     return(
@@ -13,6 +35,7 @@ class IngredientView extends React.Component {
         <Text>{ this.props.ingredient.name }</Text>
         <Text>{ this.props.ingredient.picture }</Text>
         <Text>{ this.props.ingredient.nutrition }</Text>
+        <Button title="Add To Cart" onPress={this.addToCart}></Button>
       </View>
     )
   }
