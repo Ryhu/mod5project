@@ -1,6 +1,6 @@
 import React from 'react';
-import AddIngredient from '../components/AddIngredient'
-import AddRecipe from '../components/AddRecipe'
+import PrepFridge from '../components/PrepFridge'
+import PrepPlan from '../components/PrepPlan'
 import { Button, View, Text, Image } from "react-native";
 
 
@@ -27,10 +27,10 @@ class Add extends React.Component {
     switch(this.state.screen){
       case "":
         return this.showMainMenu()
-      case "ingredient":
-        return <AddIngredient messageAction={ this.changeMessage } />
-      case "recipe":
-        return <AddRecipe messageAction={ this.changeMessage } />
+      case "fridge":
+        return <PrepFridge messageAction={ this.changeMessage } />
+      case "plan":
+        return <PrepPlan messageAction={ this.changeMessage } />
 
       default:
         console.log("failed the switch")
@@ -46,9 +46,9 @@ class Add extends React.Component {
   showMainMenu(){
     return (
       <View>
-        <Text>Add</Text>
-        <Button className="addButtons" onPress={ () => this.setScreen('ingredient') }>add Ingredient</Button>
-        <Button className="addButtons" onPress={ () => this.setScreen('recipe') }>add Recipe</Button>
+        <Text>Prep</Text>
+        <Button className="addButtons" onPress={ () => this.setScreen('fridge') } title="Fridge"></Button>
+        <Button className="addButtons" onPress={ () => this.setScreen('plan') } title="Plan"></Button>
         {this.messageDisplay()}
       </View>
     )

@@ -37,3 +37,9 @@ ShoppingCartIngredient.create(amount:1, ingredient_id: bread.id, shopping_cart_i
 ShoppingCartIngredient.create(amount:2, ingredient_id: 2, shopping_cart_id: 1)
 ShoppingCartIngredient.create(amount:1, ingredient_id: 7, shopping_cart_id: 1)
 ShoppingCartIngredient.create(amount:3, ingredient_id: 4, shopping_cart_id: 1)
+
+Fridge.create(user_id:1)
+FridgeIngredient.create(amount:1, ingredient_id: bread.id, fridge_id: 1)
+FridgeIngredient.create(amount:2, ingredient_id: 2, fridge_id: 1)
+FridgeIngredient.create(amount:1, ingredient_id: 7, fridge_id: 1)
+FridgeIngredient.create(amount:3, ingredient_id: 4, fridge_id: 1)
